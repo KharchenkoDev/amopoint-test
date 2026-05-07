@@ -1,0 +1,16 @@
+services:
+  php:
+    build:
+      target: prod
+    # В prod код запечён в образе — bind mount не нужен
+    volumes: []
+
+  nginx:
+    volumes:
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    # Статические файлы отдаются через PHP-FPM (try_files → index.php)
+    # Для CDN/раздельной отдачи статики — см. README раздел Production
+
+  mysql:
+    # В prod не открываем порт БД наружу
+    ports: []
