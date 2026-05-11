@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class CoinPrice extends Model
 {
-    const UPDATED_AT = null;
+    public const UPDATED_AT = null;
 
     protected $fillable = [
         'coin_id',
@@ -16,7 +16,7 @@ class CoinPrice extends Model
     ];
 
     protected $casts = [
-        'price_usd'  => 'float',
+        'price_usd' => 'float',
         'fetched_at' => 'datetime',
         'created_at' => 'datetime',
     ];

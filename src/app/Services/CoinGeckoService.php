@@ -9,11 +9,11 @@ class CoinGeckoService
     public function fetchPrices(): array
     {
         $config = config('services.coingecko');
-        $coins  = implode(',', $config['coins']);
+        $coins = implode(',', $config['coins']);
 
         $response = Http::timeout(10)->get($config['base_url'] . '/simple/price', [
-            'ids'              => $coins,
-            'vs_currencies'    => 'usd',
+            'ids' => $coins,
+            'vs_currencies' => 'usd',
             'x_cg_demo_api_key' => $config['api_key'],
         ]);
 
@@ -27,6 +27,6 @@ class CoinGeckoService
             throw new \RuntimeException('CoinGecko API returned an unexpected response');
         }
 
-        return array_map(fn($coin) => $coin['usd'], $data);
+        return array_map(fn ($coin) => $coin['usd'], $data);
     }
 }

@@ -15,12 +15,12 @@ class FetchCoinPricesJob implements ShouldQueue
     public function handle(CoinGeckoService $service): void
     {
         $fetchedAt = now();
-        $prices    = $service->fetchPrices();
+        $prices = $service->fetchPrices();
 
         foreach ($prices as $coinId => $priceUsd) {
             CoinPrice::create([
-                'coin_id'    => $coinId,
-                'price_usd'  => $priceUsd,
+                'coin_id' => $coinId,
+                'price_usd' => $priceUsd,
                 'fetched_at' => $fetchedAt,
             ]);
         }

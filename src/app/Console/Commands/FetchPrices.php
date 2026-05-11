@@ -15,6 +15,7 @@ class FetchPrices extends Command
     {
         FetchCoinPricesJob::dispatch();
         $this->info('FetchCoinPricesJob dispatched.');
+
         return Command::SUCCESS;
     }
 }
