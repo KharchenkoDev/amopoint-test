@@ -3,6 +3,7 @@
 namespace Tests\Unit;
 
 use App\Services\CoinGeckoService;
+use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Support\Facades\Http;
 use Tests\TestCase;
 
@@ -25,9 +26,11 @@ class CoinGeckoServiceTest extends TestCase
             'ethereum' => 2335.7,
             'alloy-tether' => 0.998879,
         ], $prices);
+
+        Http::assertSentCount(1);
     }
 
-    public function test_throws_on_http_error(): void
+    public function test_throws_on_server_error(): void
     {
         Http::fake(['*' => Http::response([], 500)]);
 
@@ -45,5 +48,23 @@ class CoinGeckoServiceTest extends TestCase
         $this->expectExceptionMessage('CoinGecko API returned an unexpected response');
 
         (new CoinGeckoService())->fetchPrices();
+    }
+
+    public function test_retries_on_connection_error(): void
+    {
+        $retryTimes = config('services.coingecko.retry_times');
+        $attempts = 0;
+
+        Http::fake(['*' => function () use (&$attempts) {
+            $attempts++;
+            throw new ConnectionException();
+        }]);
+
+        try {
+            (new CoinGeckoService())->fetchPrices();
+            $this->fail('Expected exception was not thrown');
+        } catch (ConnectionException) {
+            $this->assertSame($retryTimes, $attempts);
+        }
     }
 }

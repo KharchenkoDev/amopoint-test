@@ -11,7 +11,14 @@ class CoinGeckoService
         $config = config('services.coingecko');
         $coins = implode(',', $config['coins']);
 
-        $response = Http::timeout(10)->get($config['base_url'] . '/simple/price', [
+        $response = Http::timeout(10)
+            ->retry(
+                $config['retry_times'],
+                $config['retry_sleep_ms'],
+                fn (\Exception $e) => $e instanceof \Illuminate\Http\Client\ConnectionException,
+                throw: false,
+            )
+            ->get($config['base_url'] . '/simple/price', [
             'ids' => $coins,
             'vs_currencies' => 'usd',
             'x_cg_demo_api_key' => $config['api_key'],

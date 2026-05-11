@@ -36,9 +36,11 @@ return [
     ],
 
     'coingecko' => [
-        'base_url' => env('COINGECKO_BASE_URL', 'https://api.coingecko.com/api/v3'),
-        'api_key'  => env('COINGECKO_API_KEY'),
-        'coins'    => ['bitcoin', 'ethereum', 'alloy-tether'],
+        'base_url'       => env('COINGECKO_BASE_URL', 'https://api.coingecko.com/api/v3'),
+        'api_key'        => env('COINGECKO_API_KEY'),
+        'coins'          => ['bitcoin', 'ethereum', 'alloy-tether'],
+        'retry_times'    => (int) env('COINGECKO_RETRY_TIMES', 3),
+        'retry_sleep_ms' => (int) env('COINGECKO_RETRY_SLEEP_MS', 500),
     ],
 
 ];
