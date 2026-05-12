@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TrackController;
 use App\Models\CoinPrice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -15,3 +16,5 @@ Route::get('/prices', function (Request $request) {
 
     return response()->json($query->paginate($perPage));
 });
+
+Route::post('/track', [TrackController::class, 'store']);
