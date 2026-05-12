@@ -11,9 +11,7 @@ Route::get('/prices', function (Request $request) {
         $query->where('coin_id', $request->coin_id);
     }
 
-    if ($request->filled('per_page')) {
-        return response()->json($query->paginate((int) $request->per_page));
-    }
+    $perPage = min($request->integer('per_page', 50), 500);
 
-    return response()->json($query->get());
+    return response()->json($query->paginate($perPage));
 });
