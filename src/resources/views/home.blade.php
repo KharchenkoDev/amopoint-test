@@ -16,7 +16,7 @@
                 <a href="https://docs.google.com/document/d/10LwR5k3guN9Z45-6lnQXcdN53R17Q4keoT01mMkW4hA/edit?tab=t.0"
                    target="_blank"
                    class="text-sm text-gray-500 hover:text-gray-800 transition">
-                    Тестовое задание
+                    Текст ТЗ
                 </a>
                 <a href="https://github.com/KharchenkoDev/amopoint-test"
                    target="_blank"
@@ -60,7 +60,7 @@
                 <h2 class="text-lg font-semibold text-gray-800">Фильтрация полей по типу</h2>
             </div>
             <p class="text-sm text-gray-600 leading-relaxed">
-                JS-скрипт, который скрывает и показывает поля формы в зависимости от выбранного
+                JavaScript-скрипт, который скрывает и показывает поля формы в зависимости от выбранного
                 значения в поле «Тип». Показываются только те элементы, в атрибуте <code class="bg-gray-100 px-1 rounded">name</code>
                 которых содержится выбранное значение.
             </p>
@@ -94,7 +94,7 @@
                 <h2 class="text-lg font-semibold text-gray-800">Трекер посещений</h2>
             </div>
             <p class="text-sm text-gray-600 leading-relaxed">
-                JS-скрипт для подключения к любому сайту. Отправляет данные о визите на сервер,
+                JavaScript-сниппет для подключения к любому сайту. Отправляет данные о визите на сервер,
                 который определяет город по IP и тип устройства по User-Agent. Статистика доступна
                 на странице аналитики с авторизацией.
             </p>
