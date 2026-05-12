@@ -17,6 +17,7 @@ ARTISAN  = $(PHP) artisan
 .DEFAULT_GOAL := help
 .PHONY: help install build up down stop start restart shell logs ps permissions \
         composer composer-install artisan key-generate migrate migrate-fresh \
+        test \
         cs cs-fix \
         prod-up prod-down
 
@@ -86,6 +87,10 @@ migrate: ## Выполнить миграции
 
 migrate-fresh: ## Сбросить БД и накатить миграции с сидерами
 	@$(ARTISAN) migrate:fresh --seed
+
+## —— Tests ————————————————————————————————————————————————————————————————————
+test: ## Запустить тесты
+	@$(ARTISAN) test
 
 ## —— Code Quality —————————————————————————————————————————————————————————————
 cs: ## Проверить стиль кода (без изменений)
