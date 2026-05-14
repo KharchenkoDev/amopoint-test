@@ -55,8 +55,7 @@ RUN composer install \
     --no-dev \
     --no-scripts \
     --no-autoloader \
-    --prefer-dist \
-    --optimize-autoloader
+    --prefer-dist
 
 COPY src/ .
 
