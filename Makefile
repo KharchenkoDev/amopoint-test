@@ -64,7 +64,8 @@ ps: ## Статус контейнеров
 	@$(DOCKER_COMP) ps
 
 permissions: ## Выставить права на storage/ и bootstrap/cache/
-	@$(PHP_EXEC) chmod -R 777 storage bootstrap/cache
+	@$(PHP_EXEC) chown -R www-data:www-data storage bootstrap/cache
+	@$(PHP_EXEC) chmod -R ug+rwX storage bootstrap/cache
 
 ## —— Composer 🧙 ——————————————————————————————————————————————————————————————
 composer: ## Запустить Composer; передай команду через c=, например: make composer c='require laravel/sanctum'
