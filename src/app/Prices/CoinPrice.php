@@ -16,7 +16,7 @@ class CoinPrice extends Model
     ];
 
     protected $casts = [
-        'price_usd' => 'float',
+        'price_usd' => 'decimal:8',
         'fetched_at' => 'datetime',
         'created_at' => 'datetime',
     ];
