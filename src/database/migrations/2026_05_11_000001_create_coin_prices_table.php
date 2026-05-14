@@ -13,6 +13,8 @@ return new class () extends Migration {
             $table->decimal('price_usd', 20, 8);
             $table->timestamp('fetched_at');
             $table->timestamp('created_at')->useCurrent();
+
+            $table->index(['coin_id', 'fetched_at']);
         });
     }
 
