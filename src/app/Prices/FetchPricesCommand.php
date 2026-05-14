@@ -1,15 +1,14 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Prices;
 
-use App\Jobs\FetchCoinPricesJob;
 use Illuminate\Console\Attributes\Description;
 use Illuminate\Console\Attributes\Signature;
 use Illuminate\Console\Command;
 
 #[Signature('app:fetch-prices')]
 #[Description('Dispatch a job to fetch BTC, ETH, USDT prices from CoinGecko')]
-class FetchPrices extends Command
+class FetchPricesCommand extends Command
 {
     public function handle(): int
     {

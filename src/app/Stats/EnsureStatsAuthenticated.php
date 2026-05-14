@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Http\Middleware;
+namespace App\Stats;
 
-use App\Services\StatsAuthService;
 use Closure;
 use Illuminate\Http\Request;
 

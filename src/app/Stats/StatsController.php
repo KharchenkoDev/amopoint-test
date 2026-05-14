@@ -1,12 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Stats;
 
-use App\Models\PageVisit;
-use App\Services\StatsAuthService;
 use Illuminate\Http\Request;
 
-class StatsController extends Controller
+class StatsController
 {
     public function __construct(private StatsAuthService $auth) {}
 

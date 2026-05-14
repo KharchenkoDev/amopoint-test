@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Stats;
 
-use App\Models\PageVisit;
-use App\Services\GeoIpService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-class TrackController extends Controller
+class TrackController
 {
     public function store(Request $request, GeoIpService $geoIp): JsonResponse
     {

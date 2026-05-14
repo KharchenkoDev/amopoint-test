@@ -1,9 +1,7 @@
 <?php
 
-namespace App\Jobs;
+namespace App\Prices;
 
-use App\Models\CoinPrice;
-use App\Services\CoinGeckoService;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Support\Facades\Log;

@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Models\CoinPrice;
+use App\Prices\CoinPrice;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 

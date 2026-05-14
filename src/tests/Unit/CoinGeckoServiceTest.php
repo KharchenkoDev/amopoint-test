@@ -2,7 +2,7 @@
 
 namespace Tests\Unit;
 
-use App\Services\CoinGeckoService;
+use App\Prices\CoinGeckoService;
 use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Support\Facades\Http;
 use Tests\TestCase;
@@ -15,7 +15,7 @@ class CoinGeckoServiceTest extends TestCase
             '*' => Http::response([
                 'bitcoin' => ['usd' => 81236.0],
                 'ethereum' => ['usd' => 2335.7],
-                'alloy-tether' => ['usd' => 0.998879],
+                'tether' => ['usd' => 0.998879],
             ]),
         ]);
 
@@ -24,7 +24,7 @@ class CoinGeckoServiceTest extends TestCase
         $this->assertEquals([
             'bitcoin' => 81236.0,
             'ethereum' => 2335.7,
-            'alloy-tether' => 0.998879,
+            'tether' => 0.998879,
         ], $prices);
 
         Http::assertSentCount(1);

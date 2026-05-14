@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace App\Prices;
 
 use Illuminate\Support\Facades\Http;
 

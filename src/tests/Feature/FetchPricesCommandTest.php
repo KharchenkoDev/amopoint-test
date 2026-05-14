@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Jobs\FetchCoinPricesJob;
+use App\Prices\FetchCoinPricesJob;
 use Illuminate\Support\Facades\Queue;
 use Tests\TestCase;
 
