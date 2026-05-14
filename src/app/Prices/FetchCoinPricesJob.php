@@ -4,6 +4,7 @@ namespace App\Prices;
 
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class FetchCoinPricesJob implements ShouldQueue
@@ -15,13 +16,15 @@ class FetchCoinPricesJob implements ShouldQueue
         $fetchedAt = now();
         $prices = $service->fetchPrices();
 
-        foreach ($prices as $coinId => $priceUsd) {
-            CoinPrice::create([
-                'coin_id' => $coinId,
-                'price_usd' => $priceUsd,
-                'fetched_at' => $fetchedAt,
-            ]);
-        }
+        DB::transaction(function () use ($prices, $fetchedAt): void {
+            foreach ($prices as $coinId => $priceUsd) {
+                CoinPrice::create([
+                    'coin_id' => $coinId,
+                    'price_usd' => $priceUsd,
+                    'fetched_at' => $fetchedAt,
+                ]);
+            }
+        });
 
         Log::info('FetchCoinPricesJob: saved ' . count($prices) . ' coin prices', [
             'fetched_at' => $fetchedAt->toIso8601String(),

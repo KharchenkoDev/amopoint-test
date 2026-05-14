@@ -29,38 +29,15 @@ class StatsController
         return redirect()->route('stats.login');
     }
 
-    public function dashboard()
+    public function dashboard(DashboardQuery $query)
     {
-        $allHours = collect();
-        for ($i = 23; $i >= 0; $i--) {
-            $allHours[now()->subHours($i)->format('Y-m-d H:00')] = 0;
-        }
-
-        $dbHourly = PageVisit::where('visited_at', '>=', now()->subHours(24))
-            ->selectRaw('DATE_FORMAT(visited_at, "%Y-%m-%d %H:00") as hour, COUNT(DISTINCT ip) as count')
-            ->groupBy('hour')
-            ->pluck('count', 'hour');
-
-        $hourlyData   = $allHours->merge($dbHourly);
-        $hourlyLabels = $hourlyData->keys()->map(fn ($h) => substr($h, 11, 5))->values();
-        $hourlyCounts = $hourlyData->values();
-
-        $cityRows = PageVisit::selectRaw('COALESCE(NULLIF(city, ""), "Unknown") as city, COUNT(*) as count')
-            ->groupBy('city')
-            ->orderByDesc('count')
-            ->limit(10)
-            ->get();
-
-        $cityLabels = $cityRows->pluck('city');
-        $cityCounts = $cityRows->pluck('count');
-
-        $totalVisits    = PageVisit::count();
-        $uniqueVisitors = PageVisit::distinct('ip')->count('ip');
-
-        return view('stats.dashboard', compact(
-            'hourlyLabels', 'hourlyCounts',
-            'cityLabels', 'cityCounts',
-            'totalVisits', 'uniqueVisitors'
-        ));
+        return view('stats.dashboard', [
+            'hourlyLabels'   => $query->hourlyLabels(),
+            'hourlyCounts'   => $query->hourlyCounts(),
+            'cityLabels'     => $query->topCityLabels(),
+            'cityCounts'     => $query->topCityCounts(),
+            'totalVisits'    => $query->totalVisits(),
+            'uniqueVisitors' => $query->uniqueVisitors(),
+        ]);
     }
 }
