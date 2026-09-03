@@ -50,6 +50,43 @@
 
         </div>
 
+        {{-- Таблица последних визитов --}}
+        <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+            <div class="px-6 py-4 border-b border-gray-100">
+                <h2 class="text-sm font-semibold text-gray-600">Последние визиты</h2>
+            </div>
+            @if ($recentVisits->isEmpty())
+                <p class="text-sm text-gray-400 text-center py-12">Нет данных</p>
+            @else
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm text-left">
+                        <thead class="bg-gray-50 text-xs text-gray-500 uppercase tracking-wide">
+                            <tr>
+                                <th class="px-4 py-3 font-medium">IP</th>
+                                <th class="px-4 py-3 font-medium">Город</th>
+                                <th class="px-4 py-3 font-medium">Страна</th>
+                                <th class="px-4 py-3 font-medium">Устройство</th>
+                                <th class="px-4 py-3 font-medium">Страница</th>
+                                <th class="px-4 py-3 font-medium">Время</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-50">
+                            @foreach ($recentVisits as $visit)
+                                <tr class="hover:bg-gray-50 transition-colors">
+                                    <td class="px-4 py-3 font-mono text-gray-700">{{ $visit->ip }}</td>
+                                    <td class="px-4 py-3 text-gray-800">{{ $visit->city ?: '—' }}</td>
+                                    <td class="px-4 py-3 text-gray-600">{{ $visit->country ?: '—' }}</td>
+                                    <td class="px-4 py-3 text-gray-600">{{ $visit->device ?: '—' }}</td>
+                                    <td class="px-4 py-3 text-gray-600 max-w-xs truncate" title="{{ $visit->page_url }}">{{ $visit->page_url }}</td>
+                                    <td class="px-4 py-3 text-gray-500 whitespace-nowrap">{{ $visit->visited_at->format('d.m.Y H:i') }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            @endif
+        </div>
+
     </main>
 
     <script>

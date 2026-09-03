@@ -52,6 +52,14 @@ class DashboardQuery
         return $slots->merge($dbCounts);
     }
 
+    public function recentVisits(int $limit = 50): Collection
+    {
+        return PageVisit::select('ip', 'city', 'country', 'device', 'page_url', 'visited_at')
+            ->orderByDesc('visited_at')
+            ->limit($limit)
+            ->get();
+    }
+
     private function topCities(int $limit): Collection
     {
         return PageVisit::select('city', \Illuminate\Support\Facades\DB::raw('COUNT(*) as count'))

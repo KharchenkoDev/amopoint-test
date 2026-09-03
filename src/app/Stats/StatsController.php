@@ -38,6 +38,7 @@ class StatsController
             'cityCounts'     => $query->topCityCounts(),
             'totalVisits'    => $query->totalVisits(),
             'uniqueVisitors' => $query->uniqueVisitors(),
+            'recentVisits'   => $query->recentVisits(),
         ]);
     }
 }
