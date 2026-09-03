@@ -2,8 +2,6 @@
 
 Тестовое задание: [ссылка](https://docs.google.com/document/d/10LwR5k3guN9Z45-6lnQXcdN53R17Q4keoT01mMkW4hA/edit?tab=t.0)
 
-Проект опубликован по адресу: [amopoint.it-dude.ru](https://amopoint.it-dude.ru)
-
 ## Запуск
 
 **1. Скопируй `.env`-файлы**
@@ -116,7 +114,7 @@ JS-скрипт для страницы [test.amopoint-dev.ru/testzz/testlist.ht
 ### Подключение к странице
 
 ```html
-<script src="https://amopoint.it-dude.ru/js/filter.js"></script>
+<script src="https://your-domain.ru/js/filter.js"></script>
 ```
 
 ## 3. Трекер посещений
@@ -141,7 +139,7 @@ JS-скрипт для страницы [test.amopoint-dev.ru/testzz/testlist.ht
 ### Подключение к сайту
 
 ```html
-<script>window.TRACKING_URL = 'https://amopoint.it-dude.ru/api/track';</script>
-<script src="https://amopoint.it-dude.ru/js/tracker.js"></script>
+<script>window.TRACKING_URL = 'https://your-domain.ru/api/track';</script>
+<script src="https://your-domain.ru/js/tracker.js"></script>
 ```
 
